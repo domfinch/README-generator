@@ -2,59 +2,66 @@ const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./generateMarkdown');
 
-var questions = [
+const promptUser = () => {[
+
     {
         type: "input",
-          message: "What it the title of this project?",
-          name: "projectTitle", 
-          validate: function (response) {
-            if (response.length < 1) {
-                return console.log("Please enter a valid response");
+          message: "Project Name?",
+          name: "projectName", 
+          validate: nameInput => {
+            if (nameInput) {
+              return true;
+            } else {
+              console.log('Enter valid response.');
+              return false;
             }
-            return true;
-    },
+          }
         },
-      {
-        type: "input",
-        message: "Please explain the installation process if necessary.",
-        name: "installation-process",
-     },
+        { 
+          type: "input",
+          message: "Please provide a breif description of your project.",
+          name: "description",
+          validate: nameInput => {
+            if (nameInput) {
+              return true;
+            } else {
+              console.log('Enter valid response.');
+              return false;
+            }
+          }
+        },
+     {
+      type: "input",
+      message: "If needed, explain your installation process.",
+      name: "installation",
+   },
      {
         type: "input",
-        message: "How do you Use your application?",
-        name: "usageinfo",
+        message: "How is the installation used?",
+        name: "usage",
         validate: function (response) {
             if (response.length < 1) {
                 return console.log("Please enter a valid response");
             }
             return true;
     },
-    },
-     { 
-        type: "input",
-        message: "Please provide a breif description of your project.",
-        name: "description",
-        validate: function (response) {
-            if (response.length < 1) {
-                return console.log("Please enter a valid response");
-            }
-            return true;
-    },
-           },
+  },
       {
           type: "input",
-          message: "Who are the people contributiing to your project?",
+          message: "Who are the contributors of the project?",
           name: "contributing",
-          validate: function (response) {
-            if (response.length < 1) {
-                return console.log("Please enter a valid response");
+          validate: nameInput => {
+            if (nameInput) {
+              return true;
+            } else {
+              console.log('Enter valid response.');
+              return false;
             }
-            return true;
-    },
-      },
+          }
+        },
      {
           type: "input",
-          message: "How do people test your project?",
+          message: "How is your project tested?",
           name: "tests"
       },
       {
@@ -64,35 +71,41 @@ var questions = [
     },
       {
           type: "input",
-          message: "Enter your GitHub username:",
+          message: "Please enter your GitHub username:",
           name: "userNameGitHub",
-          validate: function (response) {
-            if (response.length < 1) {
-                return console.log("Please enter a valid response");
+          validate: nameInput => {
+            if (nameInput) {
+              return true;
+            } else {
+              console.log('Enter valid response.');
+              return false;
             }
-            return true;
-    },
-      },
+          }
+        },
       {
           type: "input",
           message: "What is your email address?",
           name: "userEmail",
-          validate: function (response) {
-            if (response.length < 1) {
-                return console.log("Please enter a valid response");
+          validate: nameInput => {
+            if (nameInput) {
+              return true;
+            } else {
+              console.log('Enter valid response.');
+              return false;
             }
-            return true;
-    },
-      },
+          }
+        },
     ]
-    //function for readme
-    inquirer.prompt(questions).then(function(promptResponse) {
+    
+
+    // Readme Function
+    inquirer.prompt(promptUser).then(function(promptResponse) {
         console.log(promptResponse);
         
-         var content = generateMarkdown(promptResponse);
+         const content = generateMarkdown(promptResponse);
          console.log(content);
           fs.writeFile("./ReadMe.md", content, function(err){
               if (err) throw err
               console.log("Enjoy your ReadMe!");
           });
-     } ); 
+     } )};

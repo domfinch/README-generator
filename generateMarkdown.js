@@ -1,5 +1,5 @@
 function generateMarkdown(promptResponse) {
-    var content = `# ${promptResponse.projectTitle}
+    const content = `# ${promptResponse.projectName}
     
     # License
     ![${promptResponse.license}](https://img.shields.io/badge/license-${promptResponse.license}-red)
@@ -13,19 +13,19 @@ function generateMarkdown(promptResponse) {
     
     
     ## Description
-    ${promptResponse.description}
+    ${promptUser.description}
   
     # Usage
-    ${promptResponse.usage}
+    ${promptUser.usage}
   
     # Installation
-    ${promptResponse.installation-process}
+    ${promptUser.installation}
   
     # Contributing
-    ${promptResponse.contributing}
+    ${promptUser.contributing}
   
     # Testing
-    ${promptResponse.tests}
+    ${promptUser.tests}
   
     ### Questions
     If you have any questions you can contact me via: [Github](https://www.github.com/${promptResponse.userNameGithub}) [Email Me](mailto:${promptResponse.userEmail})
