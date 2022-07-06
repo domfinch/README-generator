@@ -1,111 +1,61 @@
+//Packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
 const generateMarkdown = require('./generateMarkdown');
 
-const promptUser = () => {[
+//Questions for Read me Prompt 
+const questions = () => {
+  return inquirer.prompt([
 
     {
-        type: "input",
-          message: "Project Name?",
-          name: "projectName", 
-          validate: nameInput => {
-            if (nameInput) {
-              return true;
-            } else {
-              console.log('Enter valid response.');
-              return false;
-            }
-          }
-        },
-        { 
-          type: "input",
-          message: "Please provide a breif description of your project.",
-          name: "description",
-          validate: nameInput => {
-            if (nameInput) {
-              return true;
-            } else {
-              console.log('Enter valid response.');
-              return false;
-            }
-          }
-        },
-     {
+    type: "input",
+      message: "What do you want the name of your project to be?",
+      name: "projectName"
+      
+    },
+    { 
       type: "input",
-      message: "If needed, explain your installation process.",
-      name: "installation",
-   },
-     {
-        type: "input",
-        message: "How is the installation used?",
-        name: "usage",
-        validate: function (response) {
-            if (response.length < 1) {
-                return console.log("Please enter a valid response");
-            }
-            return true;
-    },
-  },
-      {
-          type: "input",
-          message: "Who are the contributors of the project?",
-          name: "contributing",
-          validate: nameInput => {
-            if (nameInput) {
-              return true;
-            } else {
-              console.log('Enter valid response.');
-              return false;
-            }
-          }
-        },
-     {
-          type: "input",
-          message: "How is your project tested?",
-          name: "tests"
-      },
-      {
-        type:'choices',
-        choices: ['Academic Free License v3.0',"MIT","Open Software License 3.0","Other", "None"],
-        name:"license"
-    },
-      {
-          type: "input",
-          message: "Please enter your GitHub username:",
-          name: "userNameGitHub",
-          validate: nameInput => {
-            if (nameInput) {
-              return true;
-            } else {
-              console.log('Enter valid response.');
-              return false;
-            }
-          }
-        },
-      {
-          type: "input",
-          message: "What is your email address?",
-          name: "userEmail",
-          validate: nameInput => {
-            if (nameInput) {
-              return true;
-            } else {
-              console.log('Enter valid response.');
-              return false;
-            }
-          }
-        },
-    ]
-    
-
-    // Readme Function
-    inquirer.prompt(promptUser).then(function(promptResponse) {
-        console.log(promptResponse);
+      message: "Please describe your project.",
+      name: "description"
         
-         const content = generateMarkdown(promptResponse);
-         console.log(content);
-          fs.writeFile("./ReadMe.md", content, function(err){
-              if (err) throw err
-              console.log("Enjoy your ReadMe!");
-          });
-     } )};
+    },
+  {
+    type: "input",
+    message: "Please explain the installation.",
+    name: "installation"
+ },
+ {
+    type: "input",
+    message: "What is the project used for?",
+    name: "usageinfo"
+    },
+  {
+      type: "input",
+      message: "Who is contributing to the project?",
+      name: "contributing"
+      
+  },
+ {
+      type: "input",
+      message: "How is your project tested?",
+      name: "tests"
+  },
+  {
+    type:'choices',
+    choices: ['Academic Free License v3.0',"MIT","Open Software License 3.0","Other", "None"],
+    name:"license"
+},
+  {
+      type: "input",
+      message: "Enter your GitHub username:",
+      name: "userNameGitHub"
+      
+  },
+  {
+      type: "input",
+      message: "What is your email address?",
+      name: "userEmail"
+  },
+  ])
+}
+//function for readme

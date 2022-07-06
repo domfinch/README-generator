@@ -13,19 +13,19 @@ function generateMarkdown(promptResponse) {
     
     
     ## Description
-    ${promptUser.description}
+    ${promptResponse.description}
   
     # Usage
-    ${promptUser.usage}
+    ${promptResponse.usage}
   
     # Installation
-    ${promptUser.installation}
+    ${promptResponse.installation}
   
     # Contributing
-    ${promptUser.contributing}
+    ${promptResponse.contributing}
   
     # Testing
-    ${promptUser.tests}
+    ${promptResponse.tests}
   
     ### Questions
     If you have any questions you can contact me via: [Github](https://www.github.com/${promptResponse.userNameGithub}) [Email Me](mailto:${promptResponse.userEmail})
