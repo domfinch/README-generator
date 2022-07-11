@@ -41,21 +41,33 @@ const questions = () => {
       name: "tests"
   },
   {
-    type:'choices',
+    type:'list',
+    name:"license",
     choices: ['Academic Free License v3.0',"MIT","Open Software License 3.0","Other", "None"],
-    name:"license"
-},
+    message: 'license message'
+    },
   {
       type: "input",
       message: "Enter your GitHub username:",
-      name: "userNameGitHub"
+      name: "githubname"
       
   },
   {
       type: "input",
       message: "What is your email address?",
-      name: "userEmail"
+      name: "email"
   },
   ])
 }
-//function for readme
+
+questions()
+.then(function(promptResponse) {
+  console.log(promptResponse);
+  
+   var content = generateMarkdown(promptResponse);
+   console.log(content);
+    fs.writeFile("./ReadMe.md", content, function(err){
+        if (err) throw err
+        console.log("ReadMe Generated!");
+    });
+} ); 
