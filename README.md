@@ -7,4 +7,8 @@ This application is used as a more quicker and efficient way to generate a readM
 # Demo
 
 Below is a demo video of how to use the readMe generator from the command line. The 'ExampleReadMe.md' file is what the command line generated.
-https://drive.google.com/file/d/1qFNBsvr-2yfmzLzmRjogtaMg-pi-kD2j/view
+
+
+https://user-images.githubusercontent.com/95252319/178335688-a187b5dc-a25a-41d0-9d08-af3d66b0a404.mp4
+
+
